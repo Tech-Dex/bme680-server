@@ -1,0 +1,9 @@
+services:
+  server:
+    container_name: bme680-server
+    build: .
+    ports:
+      - "3000:3000"
+    privileged: true
+    environment:
+      - PYTHONUNBUFFERED=1
