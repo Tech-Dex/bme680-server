@@ -41,6 +41,7 @@ humidity_precision = "{:.3f}"
 try:
     while True:
         if sensor.get_sensor_data():
+            # TODO: Calculate air quality index, take in count all variables beside gas resistance
             point = (
                 Point("environment_data")
                 .tag("location", "your_location")
