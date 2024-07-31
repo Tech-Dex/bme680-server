@@ -16,12 +16,12 @@ services:
       - "8086:8086"
     environment:
         - DOCKER_INFLUXDB_INIT_MODE=setup
-        - DOCKER_INFLUXDB_INIT_USERNAME=/run/secrets/influxdb_username
-        - DOCKER_INFLUXDB_INIT_PASSWORD=/run/secrets/influxdb_password
+        - DOCKER_INFLUXDB_INIT_USERNAME=admin
+        - DOCKER_INFLUXDB_INIT_PASSWORD=password
         - DOCKER_INFLUXDB_INIT_ORG=org
         - DOCKER_INFLUXDB_INIT_BUCKET=bucket
-        - DOCKER_INFLUXDB_INIT_RETENTION=1m
-        - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=/run/secrets/influxdb_admin_token
+        - DOCKER_INFLUXDB_INIT_RETENTION=30d
+        - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=token
     volumes:
         - influxdb-data:/var/lib/influxdb2
     restart: unless-stopped
@@ -30,10 +30,9 @@ services:
     image: grafana/grafana:latest
     ports:
       - "3000:3000"
-    environment:
-      - GF_SECURITY_ADMIN_PASSWORD=/run/secrets/grafana_admin_password
     volumes:
       - grafana-data:/var/lib/grafana
+      - ./grafana/custom.ini:/usr/share/grafana/conf/custom.ini
     restart: unless-stopped
     depends_on:
       - influxdb
@@ -47,13 +46,3 @@ networks:
   bme680-network:
     external: false
     name: bme680-network
-
-secrets:
-  influxdb_username:
-    file: ./secrets/influxdb_username
-  influxdb_password:
-    file: ./secrets/influxdb_password
-  influxdb_admin_token:
-    file: ./secrets/influxdb_admin_token
-  grafana_admin_password:
-    file: ./secrets/grafana_admin_password

@@ -4,6 +4,16 @@ import time
 
 import bme680
 from bme680 import constants as bme680_constants
+from influxdb_client import InfluxDBClient, Point, WritePrecision
+from influxdb_client.client.write_api import SYNCHRONOUS
+
+bucket = "bucket"
+org = "org"
+token = "token"
+url = "http://influxdb:8086"
+
+client = InfluxDBClient(url=url, token=token, org=org)
+write_api = client.write_api(write_options=SYNCHRONOUS)
 
 try:
     sensor = bme680.BME680(bme680_constants.I2C_ADDR_PRIMARY)
@@ -23,7 +33,7 @@ sensor.set_gas_heater_temperature(320)
 sensor.set_gas_heater_duration(150)
 sensor.select_gas_heater_profile(0)
 
-datetime_format = '%Y-%m-%d,%H:%M:%S'
+datetime_format = "%Y-%m-%d,%H:%M:%S"
 temperature_precision = "{:.2f}"
 pressure_precision = "{:.2f}"
 humidity_precision = "{:.3f}"
@@ -31,15 +41,17 @@ humidity_precision = "{:.3f}"
 try:
     while True:
         if sensor.get_sensor_data():
-            output = (f"{datetime.datetime.now(datetime.UTC).strftime(datetime_format)}: "
-                      f"Temperature: {temperature_precision.format(sensor.data.temperature)} °C, "
-                      f"Pressure: {pressure_precision.format(sensor.data.pressure)} hPa, "
-                      f"Humidity: {humidity_precision.format(sensor.data.humidity)} %, "
-                      f"Gas: {sensor.data.gas_resistance} Ohms")
+            point = (
+                Point("environment_data")
+                .tag("location", "your_location")
+                .field("temperature", sensor.data.temperature)
+                .field("pressure", sensor.data.pressure)
+                .field("humidity", sensor.data.humidity)
+                .field("gas_resistance", sensor.data.gas_resistance)
+                .time(datetime.datetime.now(datetime.UTC), WritePrecision.NS)
+            )
+            write_api.write(bucket=bucket, org=org, record=point)
 
-            print(output)
-        time.sleep(1)
+        time.sleep(5)
 except KeyboardInterrupt:
     pass
-
-#TODO : Add InfluxDB in docker-compose, Insert in InfluxDB.
