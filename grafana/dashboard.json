@@ -1499,8 +1499,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-green",
                 "value": null
+              },
+              {
+                "color": "green",
+                "value": 51
               },
               {
                 "color": "#EAB839",
@@ -1508,11 +1512,19 @@
               },
               {
                 "color": "orange",
-                "value": 201
+                "value": 151
               },
               {
                 "color": "red",
+                "value": 201
+              },
+              {
+                "color": "purple",
                 "value": 301
+              },
+              {
+                "color": "#800000",
+                "value": 401
               }
             ]
           },
@@ -1609,20 +1621,32 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-green",
                 "value": null
               },
               {
-                "color": "#EAB839",
+                "color": "green",
+                "value": 51
+              },
+              {
+                "color": "yellow",
                 "value": 101
               },
               {
                 "color": "orange",
-                "value": 201
+                "value": 151
               },
               {
                 "color": "red",
+                "value": 201
+              },
+              {
+                "color": "purple",
                 "value": 301
+              },
+              {
+                "color": "#800000",
+                "value": 401
               }
             ]
           },
@@ -1714,8 +1738,12 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
+                "color": "dark-green",
                 "value": null
+              },
+              {
+                "color": "green",
+                "value": 51
               },
               {
                 "color": "#EAB839",
@@ -1723,177 +1751,25 @@
               },
               {
                 "color": "orange",
-                "value": 201
+                "value": 151
               },
               {
                 "color": "red",
+                "value": 201
+              },
+              {
+                "color": "purple",
                 "value": 301
+              },
+              {
+                "color": "#800000",
+                "value": 401
               }
             ]
           },
           "unit": "none"
         },
-        "overrides": [
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "lt",
-                "reducer": "last",
-                "value": 20
-              }
-            },
-            "properties": [
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "lt",
-                "reducer": "lastNotNull",
-                "value": 30
-              }
-            },
-            "properties": [
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "yellow",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gte",
-                "reducer": "lastNotNull",
-                "value": 30
-              }
-            },
-            "properties": [
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "lte",
-                "reducer": "lastNotNull",
-                "value": 60
-              }
-            },
-            "properties": [
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "green",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gt",
-                "reducer": "lastNotNull",
-                "value": 60
-              }
-            },
-            "properties": [
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "yellow",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byValue",
-              "options": {
-                "op": "gt",
-                "reducer": "lastNotNull",
-                "value": 70
-              }
-            },
-            "properties": [
-              {
-                "id": "thresholds",
-                "value": {
-                  "mode": "absolute",
-                  "steps": [
-                    {
-                      "color": "red",
-                      "value": null
-                    }
-                  ]
-                }
-              }
-            ]
-          },
-          {
-            "matcher": {
-              "id": "byName",
-              "options": "iaq"
-            },
-            "properties": [
-              {
-                "id": "color",
-                "value": {
-                  "fixedColor": "green",
-                  "mode": "fixed"
-                }
-              }
-            ]
-          }
-        ]
+        "overrides": []
       },
       "gridPos": {
         "h": 8,
@@ -1947,6 +1823,6 @@
   "timezone": "browser",
   "title": "Dexter Home",
   "uid": "cdtfqevfnwn40b",
-  "version": 53,
+  "version": 56,
   "weekStart": ""
 }
