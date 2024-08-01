@@ -33,15 +33,55 @@ sensor.set_gas_heater_temperature(320)
 sensor.set_gas_heater_duration(150)
 sensor.select_gas_heater_profile(0)
 
-datetime_format = "%Y-%m-%d,%H:%M:%S"
-temperature_precision = "{:.2f}"
-pressure_precision = "{:.2f}"
-humidity_precision = "{:.3f}"
+HUMIDITY_BASELINE = 40.0
+HUMIDITY_WEIGHTING = 0.25
+BURN_IN_TIME = 300  # 5 minutes
+
+START_TIME = time.time()
+NOW = time.time()
+BURN_IN_DATA = []
+
+while NOW - START_TIME < BURN_IN_TIME:
+    NOW = time.time()
+    if sensor.get_sensor_data() and sensor.data.heat_stable:
+        BURN_IN_DATA.append(sensor.data.gas_resistance)
+        time.sleep(1)
+
+GAS_BASELINE = sum(BURN_IN_DATA[-50:]) / 50.0
+
+
+def calculate_iaq(
+    humidity, gas_resistance, gas_baseline, humidity_baseline, humidity_weighting
+):
+    gas_offset = gas_baseline - gas_resistance
+    hum_offset = humidity - humidity_baseline
+
+    if hum_offset > 0:
+        hum_score = (
+            (100 - humidity_baseline - hum_offset)
+            / (100 - humidity_baseline)
+            * (humidity_weighting * 100)
+        )
+    else:
+        hum_score = (
+            (humidity_baseline + hum_offset)
+            / humidity_baseline
+            * (humidity_weighting * 100)
+        )
+
+    if gas_offset > 0:
+        gas_score = (gas_resistance / gas_baseline) * (100 - (humidity_weighting * 100))
+    else:
+        gas_score = 100 - (humidity_weighting * 100)
+
+    air_quality_score = hum_score + gas_score
+
+    return air_quality_score
+
 
 try:
     while True:
-        if sensor.get_sensor_data():
-            # TODO: Calculate air quality index, take in count all variables beside gas resistance
+        if sensor.get_sensor_data() and sensor.data.heat_stable:
             point = (
                 Point("environment_data")
                 .tag("location", "your_location")
@@ -49,10 +89,19 @@ try:
                 .field("pressure", sensor.data.pressure)
                 .field("humidity", sensor.data.humidity)
                 .field("gas_resistance", sensor.data.gas_resistance)
+                .field(
+                    "iaq",
+                    calculate_iaq(
+                        sensor.data.humidity,
+                        sensor.data.gas_resistance,
+                        GAS_BASELINE,
+                        HUMIDITY_BASELINE,
+                        HUMIDITY_WEIGHTING,
+                    ),
+                )
                 .time(datetime.datetime.now(datetime.UTC), WritePrecision.NS)
             )
             write_api.write(bucket=bucket, org=org, record=point)
-
-        time.sleep(5)
+        time.sleep(1)
 except KeyboardInterrupt:
     pass
