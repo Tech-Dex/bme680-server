@@ -1,18 +1,22 @@
 import datetime
 import logging
+import os
 import time
 
 import bme680
 from bme680 import constants as bme680_constants
+from dotenv import load_dotenv
 from influxdb_client import InfluxDBClient, Point, WritePrecision
 from influxdb_client.client.write_api import SYNCHRONOUS
 
-bucket = "bucket"
-org = "org"
-token = "token"
-url = "http://influxdb:8086"
+load_dotenv()
 
-client = InfluxDBClient(url=url, token=token, org=org)
+INFLUXDB_BUCKET = os.getenv("INFLUXDB_BUCKET")
+INFLUXDB_ORG = os.getenv("INFLUXDB_ORG")
+INFLUXDB_TOKEN = os.getenv("INFLUXDB_TOKEN")
+INFLUXDB_URL = f"{os.getenv('INFLUXDB_PROTOCOL')}://{os.getenv('INFLUXDB_HOST')}:{os.getenv('INFLUXDB_PORT')}"
+
+client = InfluxDBClient(url=INFLUXDB_URL, token=INFLUXDB_TOKEN, org=INFLUXDB_ORG)
 write_api = client.write_api(write_options=SYNCHRONOUS)
 
 try:
@@ -26,16 +30,16 @@ except Exception as e:
 sensor.set_humidity_oversample(bme680_constants.OS_2X)
 sensor.set_pressure_oversample(bme680_constants.OS_4X)
 sensor.set_temperature_oversample(bme680_constants.OS_8X)
-sensor.set_temp_offset(-4)
+sensor.set_temp_offset(int(os.getenv("BME680_SENSOR_TEMP_OFFSET")))
 sensor.set_filter(bme680_constants.FILTER_SIZE_3)
 sensor.set_gas_status(bme680_constants.ENABLE_GAS_MEAS)
-sensor.set_gas_heater_temperature(320)
-sensor.set_gas_heater_duration(150)
-sensor.select_gas_heater_profile(0)
+sensor.set_gas_heater_temperature(int(os.getenv("BME680_SENSOR_GAS_HEATER_TEMP")))
+sensor.set_gas_heater_duration(int(os.getenv("BME680_SENSOR_GAS_HEATER_DURATION")))
+sensor.select_gas_heater_profile(int(os.getenv("BME680_SENSOR_GAS_HEATER_PROFILE")))
 
-HUMIDITY_BASELINE = 40.0
-HUMIDITY_WEIGHTING = 0.25
-BURN_IN_TIME = 300  # 5 minutes
+HUMIDITY_BASELINE = float(os.getenv("BME680_SENSOR_HUMIDITY_BASELINE"))
+HUMIDITY_WEIGHTING = float(os.getenv("BME680_SENSOR_HUMIDITY_WEIGHTING"))
+BURN_IN_TIME = int(os.getenv("BME680_SENSOR_BURN_IN_TIME"))
 
 START_TIME = time.time()
 NOW = time.time()
@@ -101,7 +105,7 @@ try:
                 )
                 .time(datetime.datetime.now(datetime.UTC), WritePrecision.NS)
             )
-            write_api.write(bucket=bucket, org=org, record=point)
+            write_api.write(bucket=INFLUXDB_BUCKET, org=INFLUXDB_ORG, record=point)
         time.sleep(1)
 except KeyboardInterrupt:
     pass
