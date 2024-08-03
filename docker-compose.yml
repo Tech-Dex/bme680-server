@@ -32,9 +32,12 @@ services:
       - "3000:3000"
     volumes:
       - grafana-data:/var/lib/grafana
-    environment:
-      - GF_PATHS_CONFIG:./grafana/custom.ini
+      - ./grafana/configure.sh:/usr/local/bin/configure.sh
     restart: unless-stopped
+    environment:
+      - GRAFANA_USERNAME=${GRAFANA_USERNAME}
+      - GRAFANA_PASSWORD=${GRAFANA_PASSWORD}
+    command: ["/bin/sh", "-c", "/usr/local/bin/configure.sh"]
     depends_on:
       - influxdb
 
