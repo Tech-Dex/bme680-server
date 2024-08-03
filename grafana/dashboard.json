@@ -24,7 +24,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -88,7 +88,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -1m)\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")\n  |> last()",
           "refId": "A"
@@ -101,7 +101,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -195,7 +195,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
@@ -223,7 +223,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -313,7 +313,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -30d)\n  |> filter(fn: (r) => r[\"_field\"] == \"temperature\")\n  |> aggregateWindow(every: 1d, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
@@ -327,7 +327,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -452,7 +452,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -1m)\n  |> filter(fn: (r) => r[\"_field\"] == \"pressure\")\n  |> last()",
           "refId": "A"
@@ -465,7 +465,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -620,7 +620,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r[\"_field\"] == \"pressure\")\n  |> aggregateWindow(every: 1h, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
@@ -634,7 +634,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -786,7 +786,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -30d)\n  |> filter(fn: (r) => r[\"_field\"] == \"pressure\")\n  |> aggregateWindow(every: 1d, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
@@ -800,7 +800,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -997,7 +997,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -1m)\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\n  |> last()",
           "refId": "A"
@@ -1010,7 +1010,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -1234,7 +1234,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
@@ -1248,7 +1248,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -1472,7 +1472,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -30d)\n  |> filter(fn: (r) => r[\"_field\"] == \"humidity\")\n  |> aggregateWindow(every: 1d, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
@@ -1486,7 +1486,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -1503,28 +1503,20 @@
                 "value": null
               },
               {
-                "color": "green",
-                "value": 51
-              },
-              {
-                "color": "#EAB839",
-                "value": 101
+                "color": "red",
+                "value": 20
               },
               {
                 "color": "orange",
-                "value": 151
+                "value": 40
               },
               {
-                "color": "red",
-                "value": 201
+                "color": "#EAB839",
+                "value": 60
               },
               {
-                "color": "purple",
-                "value": 301
-              },
-              {
-                "color": "#800000",
-                "value": 401
+                "color": "green",
+                "value": 80
               }
             ]
           },
@@ -1562,7 +1554,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -1m)\n  |> filter(fn: (r) => r[\"_field\"] == \"iaq\")\n  |> last()",
           "refId": "A"
@@ -1575,7 +1567,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -1625,28 +1617,20 @@
                 "value": null
               },
               {
-                "color": "green",
-                "value": 51
-              },
-              {
-                "color": "yellow",
-                "value": 101
+                "color": "red",
+                "value": 20
               },
               {
                 "color": "orange",
-                "value": 151
+                "value": 40
               },
               {
-                "color": "red",
-                "value": 201
+                "color": "yellow",
+                "value": 60
               },
               {
-                "color": "purple",
-                "value": 301
-              },
-              {
-                "color": "#800000",
-                "value": 401
+                "color": "green",
+                "value": 80
               }
             ]
           },
@@ -1678,7 +1662,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -7d)\n  |> filter(fn: (r) => r[\"_field\"] == \"iaq\")\n  |> aggregateWindow(every: 15m, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
@@ -1692,7 +1676,7 @@
     {
       "datasource": {
         "type": "influxdb",
-        "uid": "adtfp1m4uf0u8e"
+        "uid": "cdtpm439it79ca"
       },
       "fieldConfig": {
         "defaults": {
@@ -1742,28 +1726,20 @@
                 "value": null
               },
               {
-                "color": "green",
-                "value": 51
-              },
-              {
-                "color": "#EAB839",
-                "value": 101
+                "color": "red",
+                "value": 20
               },
               {
                 "color": "orange",
-                "value": 151
+                "value": 40
               },
               {
-                "color": "red",
-                "value": 201
+                "color": "#EAB839",
+                "value": 60
               },
               {
-                "color": "purple",
-                "value": 301
-              },
-              {
-                "color": "#800000",
-                "value": 401
+                "color": "green",
+                "value": 80
               }
             ]
           },
@@ -1795,7 +1771,7 @@
         {
           "datasource": {
             "type": "influxdb",
-            "uid": "adtfp1m4uf0u8e"
+            "uid": "cdtpm439it79ca"
           },
           "query": "from(bucket: \"bme680-sensor\")\n  |> range(start: -30d)\n  |> filter(fn: (r) => r[\"_field\"] == \"iaq\")\n  |> aggregateWindow(every: 1d, fn: mean, createEmpty: false)\n  |> yield(name: \"mean\")",
           "refId": "A"
@@ -1823,6 +1799,6 @@
   "timezone": "browser",
   "title": "Dexter Home",
   "uid": "cdtfqevfnwn40b",
-  "version": 56,
+  "version": 16,
   "weekStart": ""
 }
