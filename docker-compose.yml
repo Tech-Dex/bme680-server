@@ -36,6 +36,17 @@ services:
     depends_on:
       - influxdb
 
+  telegraf:
+    image: telegraf:latest
+    container_name: telegraf
+    privileged: true
+    ports:
+      - "8125:8125"
+    volumes:
+      - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+    restart: unless-stopped
+    depends_on:
+      - influxdb
 
 volumes:
     influxdb-data:
