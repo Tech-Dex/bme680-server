@@ -34,6 +34,7 @@ This will start three services:
 - server: The service that reads data from the BME680 sensor and writes it to InfluxDB.
 - influxdb: The InfluxDB database.
 - grafana: The Grafana service for visualizing the data.
+- telegraf: The Telegraf service for collecting system metrics. Custom exec for rpi temp (Optional)
 
 ### 4. Configure Grafana
 Once the containers are running, you can access Grafana at http://localhost:3000. Follow these steps to configure it:
@@ -48,3 +49,21 @@ Once the containers are running, you can access Grafana at http://localhost:3000
 3. Create a dashboard:
    - Import json file from the `grafana` directory.
    - Or create a new dashboard and add panels to visualize the data from the BME680 sensor.
+
+
+### 5. Volume Mounts Permissions
+If you encounter permission issues with the volume mounts, you can change the permissions of the `data` directory:
+
+```sh
+sudo chown -R 472:472 data
+
+# example on my case
+cd /var/lib/docker/volumes
+sudo chown -R 472:472 bme680-server_grafana-data/
+sudo chown -R 472:472 bme680-server_influxdb-data/
+```
+
+
+##### Notes:
+
+The dashboard for metrics is a modified smaller version of the [Telegraf: system dashboard](https://grafana.com/grafana/dashboards/928-telegraf-system-dashboard/)
