@@ -44,6 +44,14 @@ services:
       - "8125:8125"
     volumes:
       - ./telegraf/telegraf.conf:/etc/telegraf/telegraf.conf:ro
+      - /:/hostfs:ro
+    environment:
+        - HOST_ETC=/hostfs/etc
+        - HOST_PROC=/hostfs/proc
+        - HOST_SYS=/hostfs/sys
+        - HOST_VAR=/hostfs/var
+        - HOST_RUN=/hostfs/run
+        - HOST_MOUNT_PREFIX=/hostfs
     restart: unless-stopped
     depends_on:
       - influxdb
