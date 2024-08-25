@@ -66,4 +66,6 @@ sudo chown -R 472:472 bme680-server_influxdb-data/
 
 ##### Notes:
 
-The dashboard for metrics is a modified smaller version of the [Telegraf: system dashboard](https://grafana.com/grafana/dashboards/928-telegraf-system-dashboard/)
+- The dashboard for metrics is a modified smaller version of the [Telegraf: system dashboard](https://grafana.com/grafana/dashboards/928-telegraf-system-dashboard/)
+- Why use env_file in telegraf? I have no idea why the env vars are not substituted properly when passed in environment: ;
+for some reason passing in env_file works. [Reference](https://community.influxdata.com/t/telegraf-docker-container-and-env-file-etc-default-telegraf/20170)
