@@ -77,11 +77,9 @@ services:
         - HOST_VAR=/hostfs/var
         - HOST_RUN=/hostfs/run
         - HOST_MOUNT_PREFIX=/hostfs
-        - INFLUXDB_URL=http://influxdb:8086
-        - INFLUXDB_TOKEN=${INFLUXDB_ADMIN_TOKEN}
-        - INFLUXDB_ORG=${INFLUXDB_ORG}
-        - INFLUXDB_BUCKET=${INFLUXDB_TELEGRAF_BUCKET}
     restart: unless-stopped
+    env_file:
+      - .env
     depends_on:
       - influxdb
       - influxdb_cli
