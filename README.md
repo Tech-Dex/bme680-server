@@ -1,6 +1,8 @@
 # BME680 InfluxDB and Grafana Setup
 
-This repository contains the code and configuration necessary to set up a system that reads data from a BME680 sensor, stores it in an InfluxDB database, and visualizes it with Grafana. The setup uses Docker Compose to manage the services.
+This repository contains the code and configuration necessary to set up a system that reads data from a BME680 sensor, stores it in an InfluxDB database, and visualizes it with Grafana.
+Additionally, it collects system metrics using Telegraf and visualizes them in Grafana (Optional, for RPi temperature monitoring & others).
+The setup uses Docker Compose to manage the services.
 
 ## Prerequisites
 
