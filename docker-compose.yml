@@ -39,7 +39,7 @@ services:
         - DOCKER_INFLUXDB_INIT_BUCKET=${INFLUXDB_BUCKET}
         - DOCKER_INFLUXDB_INIT_RETENTION=30d
         - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=${INFLUXDB_ADMIN_TOKEN}
-    entrypoint: influx bucket create --skip-verify --name telegraf --retention 30d --org ${INFLUXDB_ORG} --host http://influxdb:8086 --token ${INFLUXDB_ADMIN_TOKEN}
+    entrypoint: influx bucket create --skip-verify --name ${INFLUXDB_TELEGRAF_BUCKET --retention 30d --org ${INFLUXDB_ORG} --host http://influxdb:8086 --token ${INFLUXDB_ADMIN_TOKEN}
     restart: on-failure
     depends_on:
       - influxdb
@@ -73,6 +73,10 @@ services:
         - HOST_VAR=/hostfs/var
         - HOST_RUN=/hostfs/run
         - HOST_MOUNT_PREFIX=/hostfs
+        - INFLUXDB_URL=http://influxdb:8086
+        - INFLUXDB_TOKEN=${INFLUXDB_ADMIN_TOKEN}
+        - INFLUXDB_ORG=${INFLUXDB_ORG}
+        - INFLUXDB_BUCKET=${INFLUXDB_TELEGRAF_BUCKET}
     restart: unless-stopped
     depends_on:
       - influxdb
