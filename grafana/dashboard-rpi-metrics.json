@@ -2133,8 +2133,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2303,8 +2302,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2473,8 +2471,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2659,8 +2656,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2828,8 +2824,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -2978,8 +2973,7 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green",
-                "value": null
+                "color": "green"
               },
               {
                 "color": "red",
@@ -3098,8 +3092,8 @@
       {
         "current": {
           "selected": false,
-          "text": "bme680-sensor",
-          "value": "bme680-sensor"
+          "text": "telegraf",
+          "value": "telegraf"
         },
         "hide": 0,
         "includeAll": false,
@@ -3108,11 +3102,12 @@
         "options": [
           {
             "selected": true,
-            "text": "bme680-sensor",
-            "value": "bme680-sensor"
+            "text": "telegraf",
+            "value": "telegraf"
           }
         ],
-        "query": "bme680-sensor",
+        "query": "telegraf",
+        "queryValue": "",
         "skipUrlSync": false,
         "type": "custom"
       },
@@ -3368,6 +3363,6 @@
   "timezone": "browser",
   "title": "RPi Metrics",
   "uid": "7JdIfTn9z",
-  "version": 8,
+  "version": 9,
   "weekStart": ""
 }
