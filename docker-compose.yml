@@ -63,6 +63,9 @@ services:
       - NTFY_TOPIC=${NTFY_TOPIC}
       - NTFY_SERVER=${NTFY_SERVER}
       - NTFY_TOKEN=${NTFY_TOKEN}
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
 
   grafana:
     image: grafana/grafana:latest
@@ -79,6 +82,9 @@ services:
       - grafana-to-ntfy
     networks:
       - bme680-network
+    dns:
+      - 8.8.8.8
+      - 8.8.4.4
 
 
   telegraf:
