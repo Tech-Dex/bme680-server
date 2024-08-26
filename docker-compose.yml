@@ -55,18 +55,6 @@ services:
     networks:
       - bme680-network
 
-  grafana-to-ntfy:
-    container_name: grafana-to-ntfy
-    image: saibe1111/grafana-to-ntfy
-    restart: unless-stopped
-    environment:
-      - NTFY_TOPIC=${NTFY_TOPIC}
-      - NTFY_SERVER=${NTFY_SERVER}
-      - NTFY_TOKEN=${NTFY_TOKEN}
-    dns:
-      - 8.8.8.8
-      - 8.8.4.4
-
   grafana:
     image: grafana/grafana:latest
     ports:
@@ -79,7 +67,6 @@ services:
     restart: unless-stopped
     depends_on:
       - influxdb
-      - grafana-to-ntfy
     networks:
       - bme680-network
     dns:
